@@ -2,6 +2,7 @@ import pygame
 from pygame import locals as const
 import time
 import buttons
+import game
 
 def main():
 
@@ -14,32 +15,37 @@ def main():
     fond = pygame.image.load("images/fond.png").convert_alpha()
     #icon = pygame.image.load("images/icon.png").convert_alpha()
     title = pygame.image.load("images/title.png").convert_alpha()
-    button_border = pygame.image.load("images/button_border.png").convert_alpha()
-    play_text = pygame.image.load("images/play.png").convert_alpha()
-    options_text = pygame.image.load("images/options.png").convert_alpha()
-    
     play_button_images = [pygame.image.load("images/play_button.png").convert_alpha(),pygame.image.load("images/play_button2.png").convert_alpha()]
     options_button_images = [pygame.image.load("images/options_button.png").convert_alpha(),pygame.image.load("images/options_button2.png").convert_alpha()]
     
+    # Déclaration des variables 
     count = 0
     pos_title = (screen.get_width()/2, 200)
     pos_play_button = (screen.get_width()/2,400)
     pos_options_button = (screen.get_width()/2,600)
-    
     w, h = title.get_size()
-    
     title_time = time.time()
+    continuer = True
+    
+    # Création des buttons
     
     play_button = buttons.Button(screen, play_button_images, pos_play_button)
     options_button = buttons.Button(screen, options_button_images, pos_options_button)
     
-    continuer = True
+    # Création du jeu
+    
+    jeu = game.Game(screen)
 
     while continuer:
         for event in pygame.event.get():
             if event.type == const.QUIT or (event.type == const.KEYDOWN and event.key == const.K_ESCAPE):
                 # de manière à pouvoir quitter le menu avec echap ou la croix
                 continuer = 0
+            if event.type == const.MOUSEBUTTONDOWN:
+                pos = pygame.mouse.get_pos()
+                if play_button.is_over(pos):
+                    jeu.start()
+                
             else:
                 pos = pygame.mouse.get_pos()
                 if play_button.is_over(pos):
