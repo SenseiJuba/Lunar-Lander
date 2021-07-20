@@ -1,4 +1,4 @@
-import pygame
+import pygame #as pg <-- ça serait mieux non ?..
 from pygame import locals as const
 import time
 import buttons
@@ -7,8 +7,10 @@ import game
 def main():
 
     pygame.init()
-
-    screen = pygame.display.set_mode((1000, 1000))
+    
+    # Paramétrage de l'écran
+    WINSIZE = (1000,1000) #Pas adapté aux écran trop petit (le mien).. Et le jeu ne s'adapte pas à la résolution de fenêtre :/
+    screen = pygame.display.set_mode(WINSIZE)
     
     # Import des images du menu
     
@@ -98,7 +100,7 @@ def real_angle(angle):
         return -22+(angle%22)
     
 
-def blitRotate(surf, image, pos, originPos, angle):
+def blitRotate(surf, image, pos, originPos, angle): #cc/cv
 
     # calcaulate the axis aligned bounding box of the rotated image
     w, h       = image.get_size()

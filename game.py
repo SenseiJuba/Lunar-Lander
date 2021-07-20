@@ -13,7 +13,8 @@ class Game:
         self.continuer = True
         self.terrain = []
         y = rd.randint(400, 1000)
-        for x in range(0,1001,20):
+        for x in range(0,1001,20):   #Trop grand pour mon petit pc.. Et pas conscient de la taille de fenêtre :/
+                                     #Le "resizing" du jeu doit pouvoir se faire coté rendu du jeu.
             y = self.heigth_y(y) 
             self.terrain.append((x,y))
         self.update_screen()
