@@ -1,6 +1,7 @@
 import pygame
 from pygame import locals as const
 import time
+import buttons
 
 def main():
 
@@ -8,19 +9,29 @@ def main():
 
     screen = pygame.display.set_mode((1000, 1000))
     
+    # Import des images du menu
+    
     fond = pygame.image.load("images/fond.png").convert_alpha()
     #icon = pygame.image.load("images/icon.png").convert_alpha()
     title = pygame.image.load("images/title.png").convert_alpha()
+    button_border = pygame.image.load("images/button_border.png").convert_alpha()
+    play_text = pygame.image.load("images/play.png").convert_alpha()
+    options_text = pygame.image.load("images/options.png").convert_alpha()
     
-    #pygame.display.set_icon(icon)
-    
-    police = pygame.font.Font(None,72)
+    play_button_images = [pygame.image.load("images/play_button.png").convert_alpha(),pygame.image.load("images/play_button2.png").convert_alpha()]
+    options_button_images = [pygame.image.load("images/options_button.png").convert_alpha(),pygame.image.load("images/options_button2.png").convert_alpha()]
     
     count = 0
     pos_title = (screen.get_width()/2, 200)
+    pos_play_button = (screen.get_width()/2,400)
+    pos_options_button = (screen.get_width()/2,600)
+    
     w, h = title.get_size()
     
     title_time = time.time()
+    
+    play_button = buttons.Button(screen, play_button_images, pos_play_button)
+    options_button = buttons.Button(screen, options_button_images, pos_options_button)
     
     continuer = True
 
@@ -29,8 +40,25 @@ def main():
             if event.type == const.QUIT or (event.type == const.KEYDOWN and event.key == const.K_ESCAPE):
                 # de manière à pouvoir quitter le menu avec echap ou la croix
                 continuer = 0
+            else:
+                pos = pygame.mouse.get_pos()
+                if play_button.is_over(pos):
+                    play_button.hovering = True
+                else:
+                    play_button.hovering = False
+                    
+                if options_button.is_over(pos):
+                    options_button.hovering = True
+                else:
+                    options_button.hovering = False
+                
         
-        screen.blit(fond, (0,0)) 
+        screen.blit(fond, (0,0))
+        
+        play_button.update()
+        options_button.update()
+        
+        
         x,y=pos_title
         blitRotate(screen, title, (x,y+real_pos(count)), (w//2,h//2), real_angle(count))
         
