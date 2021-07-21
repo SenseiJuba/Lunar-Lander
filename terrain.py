@@ -30,10 +30,10 @@ class Terrain(pg.sprite.Sprite):
                         count+=1
                     pente = y-prev_y
                     prev_y = y
-                    x += rd.randint(self.screen.get_width()/(self.nb_points), 3*self.screen.get_width()//(2*self.nb_points))
+                    x += rd.randint(self.screen.get_width()//(self.nb_points), 3*self.screen.get_width()//(2*self.nb_points))
                 else:
                     prev_x = x
-                    x += rd.randint(self.screen.get_width()/(self.nb_points), 3*self.screen.get_width()//(2*self.nb_points))
+                    x += rd.randint(self.screen.get_width()//(self.nb_points), 3*self.screen.get_width()//(2*self.nb_points))
                     self.landing_pos.append(((prev_x,prev_y),(x,prev_y)))
     
     def update(self):
