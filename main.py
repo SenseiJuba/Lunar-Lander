@@ -40,7 +40,6 @@ def main():
 
     while continuer:
         for event in pygame.event.get():
-            print(event.type)
             if event.type == QUIT or (event.type == KEYDOWN and event.key == K_ESCAPE):
                 # de manière à pouvoir quitter le menu avec echap ou la croix
                 continuer = 0
@@ -58,8 +57,6 @@ def main():
                 
                 play_button.update_pos(pos_play_button)
                 options_button.update_pos(pos_options_button)
-                
-                print("caca")
                 
                 
             else:
