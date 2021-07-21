@@ -23,7 +23,7 @@ class Terrain(pg.sprite.Sprite):
                 if rd.random()>0.1:
                     y = rd.randint(self.screen.get_height()//3, self.screen.get_height())
                     while abs(y-prev_y)>100:
-                        if pente<20 or pente*(y-prev_y)>=0:
+                        if True or pente<20 or pente*(y-prev_y)>=0:
                             y = rd.randint(0, self.screen.get_height())
                     pente = y-prev_y
                     prev_y = y
