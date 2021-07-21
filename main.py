@@ -1,5 +1,5 @@
 import pygame #as pg <-- ça serait mieux non ?..
-from pygame import locals as const
+from pygame.locals import *
 import time
 import buttons
 import game
@@ -10,7 +10,7 @@ def main():
     
     # Paramétrage de l'écran
     WINSIZE = (1000,1000) #Pas adapté aux écran trop petit (le mien).. Et le jeu ne s'adapte pas à la résolution de fenêtre :/
-    screen = pygame.display.set_mode(WINSIZE)
+    screen = pygame.display.set_mode(WINSIZE,RESIZABLE)
     
     # Import des images du menu
     
@@ -40,13 +40,27 @@ def main():
 
     while continuer:
         for event in pygame.event.get():
-            if event.type == const.QUIT or (event.type == const.KEYDOWN and event.key == const.K_ESCAPE):
+            print(event.type)
+            if event.type == QUIT or (event.type == KEYDOWN and event.key == K_ESCAPE):
                 # de manière à pouvoir quitter le menu avec echap ou la croix
                 continuer = 0
-            if event.type == const.MOUSEBUTTONDOWN:
+            if event.type == MOUSEBUTTONDOWN:
                 pos = pygame.mouse.get_pos()
                 if play_button.is_over(pos):
                     jeu.start()
+            
+            if event.type == WINDOWRESIZED:
+                  
+                pos_title = (screen.get_width()/2, 200)
+                pos_play_button = (screen.get_width()/2,400)
+                pos_options_button = (screen.get_width()/2,600)
+                w, h = title.get_size()
+                
+                play_button.update_pos(pos_play_button)
+                options_button.update_pos(pos_options_button)
+                
+                print("caca")
+                
                 
             else:
                 pos = pygame.mouse.get_pos()
