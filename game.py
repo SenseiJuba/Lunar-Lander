@@ -7,14 +7,16 @@ class Game:
         self.screen = screen
         self.continuer = True
         self.terrain = []
+        self.h = screen.get_height()
+        self.w = screen.get_width()
     
     def prepare(self):
         pygame.key.set_repeat(200, 50)
         self.continuer = True
         self.terrain = []
-        y = rd.randint(400, 1000)
-        for x in range(0,1001,20):   #Trop grand pour mon petit pc.. Et pas conscient de la taille de fenêtre :/
-                                     #Le "resizing" du jeu doit pouvoir se faire coté rendu du jeu.
+        y = rd.randint(self.h//3, self.h)
+        for x in range(0,self.h + 1,20):   #Trop grand pour mon petit pc.. Et pas conscient de la taille de fenêtre :/
+                                           #Le "resizing" du jeu doit pouvoir se faire coté rendu du jeu.
             y = self.heigth_y(y) 
             self.terrain.append((x,y))
         self.update_screen()
@@ -22,9 +24,9 @@ class Game:
     def heigth_y(self,prev_y):
         if rd.random()<0.1:
             return prev_y
-        y = rd.randint(0, 1000)
-        while abs(y-prev_y)>100 or y<400:
-            y = rd.randint(0, 1000)
+        y = rd.randint(0, self.h)
+        while abs(y-prev_y)>100 or y<self.h//3:
+            y = rd.randint(0, self.h)
         return y
     
     def update_screen(self):

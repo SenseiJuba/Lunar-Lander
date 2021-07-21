@@ -24,5 +24,9 @@ class Button(pg.sprite.Sprite):
         self.image = self.images[self.hovering]
         self.screen.blit(self.image, self.rect)
         
-    def is_over(self,pos):
+    def is_over(self,pos):  
         return self.rect.collidepoint(pos)
+    
+    def update_pos(self,pos):
+        self.pos = pos
+        self.rect.center = pos
