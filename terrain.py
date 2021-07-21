@@ -15,16 +15,15 @@ class Terrain(pg.sprite.Sprite):
         self.points = []
         if mode == "default":
             x = 0
-            prev_y = rd.randint(0, self.screen.get_width()/2)
+            prev_y = rd.randint(0, self.screen.get_height()/2)
             pente = 0
             for i in range(self.nb_points):
                 self.points.append((x,1000-prev_y))
                 x += rd.randint(self.screen.get_width()/(self.nb_points), 3*self.screen.get_width()//(2*self.nb_points))
                 if rd.random()>0.1:
                     y = rd.randint(self.screen.get_height()//3, self.screen.get_height())
-                    while abs(y-prev_y)>100:
-                        if True or pente<20 or pente*(y-prev_y)>=0:
-                            y = rd.randint(0, self.screen.get_height())
+                    while abs(y-prev_y)>100 or y>self.screen.get_height()*4/5 or not (abs(pente)<30 or pente*(y-prev_y)>=0):
+                        y = rd.randint(0, self.screen.get_height())
                     pente = y-prev_y
                     prev_y = y
     
