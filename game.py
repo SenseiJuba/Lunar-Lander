@@ -1,6 +1,7 @@
 import pygame
 from pygame import locals as const
 import random as rd
+pg = pygame
 
 class Game:
     def __init__(self, screen: pygame.Surface):
@@ -41,8 +42,11 @@ class Game:
             print(event.pos)
         if event.type == const.KEYDOWN and event.key == const.K_RIGHT:
             print("truc")
-        if event.type == const.QUIT:
+        if event.type == const.KEYDOWN and event.key == const.K_ESCAPE:
             self.continuer = False
+        if event.type == const.QUIT:
+            pg.quit()
+        
                 
     
     def start(self):

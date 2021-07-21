@@ -12,3 +12,4 @@ class Spaceship(pg.sprite.Sprite):
         self.image = self.images["idle"]
         self.rect = self.image.get_rect()
         self.angle = 0
+        self.weight = 
